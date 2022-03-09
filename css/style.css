@@ -1,0 +1,68 @@
+:root{
+  --bg-color: rgb(255, 255, 255);
+  --typeWritterSpped: 4s;
+}
+
+body{
+  margin: 0;
+  font-family: "Source Sans Pro", sans-serif;
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  background: var(--bg-color);
+}
+
+h1{
+  font-size: clamp(1rem, 3vw + 1rem, 4rem);
+  position: relative;
+  font-weight: 400;
+  margin: 0;
+}
+h1::before, h1::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+h1::before{
+  background-color: var(--bg-color);
+  animation: typeWritter var(--typeWritterSpped) 499ms steps(19) forwards;
+}
+h1::after{
+  width: 0.125rem;
+  background: black;
+  animation: typeWritter var(--typeWritterSpped) 400ms steps(19) forwards,
+  blink 850ms steps(19) infinite;
+}
+
+.subtitle{
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 2rem;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateY(3rem);
+  animation: aparecer 2s ease calc(var(--typeWritterSpped) + 500ms) forwards;
+}
+
+@keyframes typeWritter{
+  to{
+    left: 100%;
+  }
+}
+
+@keyframes blink {
+  to{
+    background: transparent;
+  }
+}
+
+@keyframes aparecer {
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
